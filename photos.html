@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Yewale // Photos & Docs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #10121a;
+      --text: #ffffff;
+      --text-dim: #94a3b8;
+      --accent: #ff6600; /* Vibrant Orange */
+      --accent-glow: rgba(255, 102, 0, 0.12);
+      --border: #1e2330;
+      --border-accent: #ff6600;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --text: #090a0f;
+      --text-dim: #64748b;
+      --accent: #e65c00; /* Deep Orange */
+      --accent-glow: rgba(230, 92, 0, 0.08);
+      --border: #e2e8f0;
+      --border-accent: #e65c00;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .nav-links a, .theme-btn {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 1px solid var(--border-accent);
+      padding: 0.3rem 0.6rem;
+      background: var(--card-bg);
+      transition: all 0.2s ease;
+      box-shadow: 2px 2px 0px var(--accent);
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .theme-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--accent);
+      background: var(--accent);
+      color: #000;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+
+    p.intro {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: bold;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      text-transform: lowercase;
+    }
+
+    /* Padlet Masonry Columns Board Layout */
+    .padlet-board {
+      column-count: 2;
+      column-gap: 1.2rem;
+    }
+
+    @media (max-width: 580px) {
+      .padlet-board {
+        column-count: 1;
+      }
+    }
+
+    .padlet-card {
+      break-inside: avoid;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.9rem;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+      width: 100%;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .padlet-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+      box-shadow: 3px 3px 0px var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .padlet-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+      padding: 0.15rem 0.4rem;
+      margin-bottom: 0.6rem;
+      background: var(--bg);
+      text-transform: uppercase;
+    }
+
+    /* Natural Image Scaling */
+    .padlet-card img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: contain;
+      display: block;
+      border: 1px solid var(--border);
+      background-color: rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.8rem;
+    }
+
+    .padlet-info {
+      font-size: 0.8rem;
+    }
+
+    .padlet-title {
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .padlet-desc {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin-bottom: 0.8rem;
+    }
+
+    .doc-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.75rem;
+      border: 1px solid var(--border-accent);
+      padding: 0.4rem 0.6rem;
+      background: var(--bg);
+      font-weight: bold;
+      transition: all 0.15s ease;
+      margin-top: 0.5rem;
+    }
+
+    .doc-link:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .doc-link i {
+      margin-right: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-nav">
+    <nav class="nav-links">
+      <a href="index.html">&lt;-- home</a>
+    </nav>
+    <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <h1>// other side of tech</h1>
+    <p class="intro">
+      Documenting efforts to reduce e-waste and promote responsible tech consumption.
+    </p>
+
+    <!-- Activity 01 Section -->
+    <section>
+      <h2>// activity 01</h2>
+
+      <div class="padlet-board">
+        
+        <!-- Crossword Card -->
+        <div class="padlet-card">
+          <img src="crossword.jpeg" alt="Activity 01 Crossword">
+          <div class="padlet-info">
+            <div class="padlet-title">E-Waste Crossword</div>
+            <div class="padlet-desc">Completed puzzle mapping key e-waste recycling, toxic metals, and disposal terminology.</div>
+          </div>
+        </div>
+
+        <!-- Pledge Card -->
+        <div class="padlet-card">
+          <img src="pledge.png" alt="Activity 01 Pledge">
+          <div class="padlet-info">
+            <div class="padlet-title">E-Waste Pledge</div>
+            <div class="padlet-desc">Signed commitment certificate for responsible electronic waste management and safe recycling practices.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+
+    function updateButtonText(theme) {
+      btn.textContent = theme === 'light' ? '[mode: light]' : '[mode: dark]';
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateButtonText(newTheme);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    updateButtonText(initialTheme);
+  </script>
+</body>
+</html>

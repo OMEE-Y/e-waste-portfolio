@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>om yewale // tech + eco</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #10121a;
+      --text: #ffffff;
+      --text-dim: #94a3b8;
+      --accent: #ff6600; /* Vibrant Orange */
+      --accent-glow: rgba(255, 102, 0, 0.12);
+      --border: #1e2330;
+      --border-accent: #ff6600;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --text: #090a0f;
+      --text-dim: #64748b;
+      --accent: #e65c00; /* Deep Orange */
+      --accent-glow: rgba(230, 92, 0, 0.08);
+      --border: #e2e8f0;
+      --border-accent: #e65c00;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2.5rem 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 1px solid var(--border-accent);
+      padding: 0.3rem 0.6rem;
+      background: var(--card-bg);
+      transition: all 0.2s ease;
+      box-shadow: 2px 2px 0px var(--accent);
+    }
+
+    .nav-links a:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--accent);
+      background: var(--accent);
+      color: #000;
+    }
+
+    .theme-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-accent);
+      color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      box-shadow: 2px 2px 0px var(--accent);
+    }
+
+    .theme-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--accent);
+    }
+
+    /* Side-by-Side Profile Section */
+    .profile {
+      display: flex;
+      gap: 1.8rem;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .profile-img-container {
+      flex-shrink: 0;
+      width: 150px;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border: 1px solid var(--border-accent);
+      background: var(--card-bg);
+      display: block;
+      box-shadow: 3px 3px 0px var(--accent);
+    }
+
+    .profile-info {
+      flex-grow: 1;
+    }
+
+    h1.ransom-name {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      user-select: none;
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .rn-1 { 
+      font-family: 'Impact', sans-serif; 
+      background: var(--accent); 
+      color: #000; 
+      padding: 2px 6px; 
+      transform: rotate(-2deg); 
+      font-weight: bold; 
+    }
+    
+    .rn-2 { 
+      font-family: 'Georgia', serif; 
+      font-style: italic; 
+      color: var(--text); 
+      border-bottom: 2px solid var(--accent); 
+      display: inline-block; 
+      padding: 0 4px; 
+    }
+
+    .subtitle {
+      color: var(--text);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    .meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 0.8rem;
+    }
+
+    @media (max-width: 560px) {
+      .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-img-container {
+        width: 130px;
+      }
+      .profile-img {
+        height: 160px;
+      }
+      h1.ransom-name {
+        justify-content: center;
+      }
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: bold;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+      text-transform: lowercase;
+    }
+
+    .about-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+    }
+
+    .about-text p {
+      margin-bottom: 0.8rem;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .about-text a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .project-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.75rem;
+      border: 1px solid var(--border-accent);
+      padding: 0.2rem 0.5rem;
+      background: var(--bg);
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+
+    .project-links a:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .badges-container {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badges-container img {
+      width: 88px;
+      height: 31px;
+      image-rendering: pixelated;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-accent);
+      padding: 0.38rem 0.6rem;
+      background: var(--bg);
+      font-weight: bold;
+      display: inline-block;
+      transition: all 0.15s ease;
+    }
+
+    .socials a:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="top-nav">
+    <nav class="nav-links">
+      <a href="photos.html">// e-waste gallery &rarr;</a>
+    </nav>
+    <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <!-- Profile & Image Section -->
+    <section class="profile">
+      <div class="profile-img-container">
+        <img src="me.jpg" alt="om yewale photo" class="profile-img">
+      </div>
+      <div class="profile-info">
+        <h1 class="ransom-name">
+          <span class="rn-1">om</span> 
+          <span class="rn-2">yewale</span>
+        </h1>
+        <p class="subtitle">B.Tech IT Student | Full Stack & AI Enthusiast</p>
+        <p class="meta">Vidyalankar Institute of Technology</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>// about</h2>
+      <div class="about-text">
+        <p>
+          i am <span class="highlight">Om Yewale</span> I love software, building frontends, and mostly importantly i enjoy experimenting
+        </p>
+        <p>
+          i'm a <span class="highlight">MERN stack</span> developer slowly transitioning towards <span class="highlight">Java & Spring Boot</span>. on the side
+        </p>
+        <p>
+          if you want to talk, vibe or build something cool with me hit me up at <a href="mailto:yewaleom394@gmail.com">yewaleom394@gmail.com</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>// projects</h2>
+
+      <div class="project-card">
+        <div class="project-title">secondbrain-link-vault</div>
+        <p class="project-desc">
+          Minimalistic, high-efficiency link storing and bookmark management system designed for fast retrieval and clean organization.
+        </p>
+        <div class="project-links">
+          <a href="https://secondbrain-link-vault.vercel.app/" target="_blank">live</a>
+          <a href="https://github.com/OMEE-Y/secondbrain-link-vault" target="_blank">src</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">DocRAG</div>
+        <p class="project-desc">
+          Lightweight, high-performance RAG chatbot built with TypeScript, Express, and Groq. Parses raw documents, indexes text locally using a keyword matching strategy, and leverages Groq's low-latency inference engine for contextual answers.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/OMEE-Y/DocRAG" target="_blank">src</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Socials Section -->
+    <section id="badges">
+      <h2>// socials</h2>
+      <div class="badges-container">
+        <a href="https://github.com/OMEE-Y" target="_blank">
+          <img src="https://pilosophos.com/88x31-viewer/buttons/cyber.dabamos.de/github.gif" alt="GitHub Badge">
+        </a>
+        <a href="mailto:yewaleom394@gmail.com">
+          <img src="https://pilosophos.com/88x31-viewer/buttons/hellnet.work/cyndalhelp_sakuraemail.GIF" alt="Sakura Email Badge">
+        </a>
+        <div class="socials">
+          <a href="https://linkedin.com/in/omyewalelinks" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+
+    function updateButtonText(theme) {
+      btn.textContent = theme === 'light' ? '[mode: light]' : '[mode: dark]';
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateButtonText(newTheme);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    updateButtonText(initialTheme);
+  </script>
+</body>
+</html>
