@@ -7,31 +7,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: #10121a;
-      --text: #ffffff;
-      --text-dim: #94a3b8;
-      --accent: #ff6600; /* Vibrant Orange */
-      --accent-glow: rgba(255, 102, 0, 0.12);
-      --border: #1e2330;
-      --border-accent: #ff6600;
+      /* Dark Brownish / Coffee-Stained Terminal */
+      --bg: #191410;
+      --card-bg: #221b16;
+      --text: #dfd5c6;
+      --text-dim: #9c8e80;
+      --accent: #c4682c; /* Warm Rust / Stamp Red */
+      --accent-glow: rgba(196, 104, 44, 0.12);
+      --border: #3b2e24;
+      --border-accent: #c4682c;
+      --cutout-bg: #dfd5c6;
+      --cutout-text: #191410;
+      --shadow-color: #0d0a08;
     }
 
     [data-theme="light"] {
-      --bg: #ffffff;
-      --card-bg: #f8fafc;
-      --text: #090a0f;
-      --text-dim: #64748b;
-      --accent: #e65c00; /* Deep Orange */
-      --accent-glow: rgba(230, 92, 0, 0.08);
-      --border: #e2e8f0;
-      --border-accent: #e65c00;
+      /* Aged Newsprint / Sepia Paper */
+      --bg: #eee4ce;
+      --card-bg: #e2d5bd;
+      --text: #1d1611;
+      --text-dim: #5c4e43;
+      --accent: #a33b18; /* Old Ink Stamp Red */
+      --accent-glow: rgba(163, 59, 24, 0.08);
+      --border: #b8a68b;
+      --border-accent: #a33b18;
+      --cutout-bg: #1d1611;
+      --cutout-text: #eee4ce;
+      --shadow-color: #baa78e;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -52,56 +64,71 @@
     }
 
     .nav-links a, .theme-btn {
-      color: var(--text);
+      color: var(--cutout-text);
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: bold;
-      border: 1px solid var(--border-accent);
+      border: 1px dashed var(--border-accent);
       padding: 0.3rem 0.6rem;
-      background: var(--card-bg);
-      transition: all 0.2s ease;
+      background: var(--cutout-bg);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
       box-shadow: 2px 2px 0px var(--accent);
       cursor: pointer;
+      display: inline-block;
+      font-family: inherit;
     }
 
     .nav-links a:hover, .theme-btn:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px var(--accent);
       background: var(--accent);
-      color: #000;
+      color: #fff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--shadow-color);
     }
 
+    /* Newspaper clipping title */
     h1 {
-      font-size: 1.3rem;
+      display: inline-block;
+      font-size: 1.25rem;
       font-weight: bold;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      background: var(--cutout-bg);
+      color: var(--cutout-text);
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 0.8rem;
       text-transform: lowercase;
+      border: 1px solid var(--border);
+      box-shadow: 3px 3px 0 var(--accent);
+      transform: rotate(-0.5deg);
     }
 
     p.intro {
       font-size: 0.82rem;
       color: var(--text-dim);
       margin-bottom: 2.5rem;
-      border-bottom: 1px dashed var(--border);
+      border-bottom: 2px dashed var(--border);
       padding-bottom: 1rem;
+      line-height: 1.6;
     }
 
     section {
       margin-bottom: 3rem;
     }
 
+    /* Newspaper cutout header tag */
     h2 {
-      font-size: 1rem;
+      display: inline-block;
+      font-size: 0.95rem;
       font-weight: bold;
-      border-left: 3px solid var(--accent);
-      padding-left: 0.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--text);
+      font-family: inherit;
       text-transform: lowercase;
+      background: var(--cutout-bg);
+      color: var(--cutout-text);
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 3px 3px 0 var(--accent);
+      transform: rotate(0.5deg);
     }
 
-    /* Padlet Masonry Columns Board Layout */
     .padlet-board {
       column-count: 2;
       column-gap: 1.2rem;
@@ -121,15 +148,16 @@
       margin-bottom: 1.2rem;
       display: inline-block;
       width: 100%;
-      transition: all 0.2s ease;
+      box-shadow: 3px 3px 0 var(--shadow-color);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       position: relative;
     }
 
     .padlet-card:hover {
       border-color: var(--accent);
       background: var(--accent-glow);
-      box-shadow: 3px 3px 0px var(--accent);
-      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--accent);
+      transform: translate(-1px, -1px);
     }
 
     .padlet-badge {
@@ -137,14 +165,15 @@
       font-size: 0.65rem;
       font-weight: bold;
       color: var(--accent);
-      border: 1px solid var(--border-accent);
+      border: 1px dashed var(--border-accent);
       padding: 0.15rem 0.4rem;
       margin-bottom: 0.6rem;
       background: var(--bg);
       text-transform: uppercase;
+      box-shadow: 1px 1px 0 var(--shadow-color);
     }
 
-    /* Natural Image Scaling */
+    /* Unfiltered images scaled naturally */
     .padlet-card img {
       width: 100%;
       height: auto;
@@ -152,7 +181,7 @@
       object-fit: contain;
       display: block;
       border: 1px solid var(--border);
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: var(--bg);
       margin-bottom: 0.8rem;
     }
 
@@ -164,12 +193,13 @@
       font-weight: bold;
       color: var(--accent);
       margin-bottom: 0.3rem;
+      font-size: 0.9rem;
     }
 
     .padlet-desc {
       color: var(--text-dim);
-      font-size: 0.75rem;
-      line-height: 1.4;
+      font-size: 0.78rem;
+      line-height: 1.5;
       margin-bottom: 0.8rem;
     }
 
@@ -184,13 +214,14 @@
       padding: 0.4rem 0.6rem;
       background: var(--bg);
       font-weight: bold;
+      box-shadow: 2px 2px 0 var(--shadow-color);
       transition: all 0.15s ease;
       margin-top: 0.5rem;
     }
 
     .doc-link:hover {
       background: var(--accent);
-      color: #000;
+      color: #fff;
     }
 
     .doc-link i {
@@ -208,14 +239,18 @@
   </header>
 
   <main>
-    <h1>// other side of tech</h1>
+    <div>
+      <h1>// other side of tech</h1>
+    </div>
     <p class="intro">
       Documenting efforts to reduce e-waste and promote responsible tech consumption.
     </p>
 
     <!-- Activity 01 Section -->
     <section>
-      <h2>// activity 01</h2>
+      <div>
+        <h2>// activity 01</h2>
+      </div>
 
       <div class="padlet-board">
         

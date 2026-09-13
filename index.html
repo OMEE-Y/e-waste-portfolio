@@ -7,23 +7,31 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: #10121a;
-      --text: #ffffff;
-      --text-dim: #94a3b8;
-      --accent: #ff6600; /* Vibrant Orange */
-      --border: #1e2330;
-      --border-accent: #ff6600;
+      /* Dark Brownish / Coffee-Stained Terminal */
+      --bg: #191410;
+      --card-bg: #221b16;
+      --text: #dfd5c6;
+      --text-dim: #9c8e80;
+      --accent: #c4682c; /* Warm Rust / Stamp Red */
+      --border: #3b2e24;
+      --border-accent: #c4682c;
+      --cutout-bg: #dfd5c6;
+      --cutout-text: #191410;
+      --shadow-color: #0d0a08;
     }
 
     [data-theme="light"] {
-      --bg: #ffffff;
-      --card-bg: #f8fafc;
-      --text: #090a0f;
-      --text-dim: #64748b;
-      --accent: #e65c00; /* Deep Orange */
-      --border: #e2e8f0;
-      --border-accent: #e65c00;
+      /* Aged Newsprint / Sepia Paper */
+      --bg: #eee4ce;
+      --card-bg: #e2d5bd;
+      --text: #1d1611;
+      --text-dim: #5c4e43;
+      --accent: #a33b18; /* Old Ink Stamp Red */
+      --border: #b8a68b;
+      --border-accent: #a33b18;
+      --cutout-bg: #1d1611;
+      --cutout-text: #eee4ce;
+      --shadow-color: #baa78e;
     }
 
     * {
@@ -54,19 +62,23 @@
     }
 
     .nav-links a {
-      color: var(--text);
+      color: var(--cutout-text);
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: bold;
-      border: 1px solid var(--border-accent);
+      border: 1px dashed var(--border-accent);
       padding: 0.3rem 0.6rem;
-      background: var(--card-bg);
-      transition: background 0.15s ease, color 0.15s ease;
+      background: var(--cutout-bg);
+      box-shadow: 2px 2px 0 var(--accent);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      display: inline-block;
     }
 
     .nav-links a:hover {
       background: var(--accent);
-      color: #000;
+      color: #fff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--shadow-color);
     }
 
     .theme-btn {
@@ -78,35 +90,38 @@
       font-family: inherit;
       font-size: 0.8rem;
       font-weight: bold;
-      transition: background 0.15s ease, color 0.15s ease;
+      box-shadow: 2px 2px 0 var(--border);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .theme-btn:hover {
-      background: var(--accent);
-      color: #000;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--accent);
     }
 
-    /* Side-by-Side Profile Section */
     .profile {
       display: flex;
       gap: 1.8rem;
       align-items: flex-start;
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
-      border-bottom: 1px dashed var(--border);
+      border-bottom: 2px dashed var(--border);
     }
 
     .profile-img-container {
       flex-shrink: 0;
       width: 150px;
+      padding: 4px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: 4px 4px 0 var(--shadow-color);
+      transform: rotate(-1.5deg);
     }
 
     .profile-img {
       width: 100%;
       height: 190px;
       object-fit: cover;
-      border: 1px solid var(--border-accent);
-      background: var(--card-bg);
       display: block;
     }
 
@@ -114,14 +129,37 @@
       flex-grow: 1;
     }
 
-    /* Cleaned up name typography */
+    /* Newspaper clipping / Ransom note cutout */
     h1.ransom-name {
       font-size: 1.6rem;
       margin-bottom: 0.8rem;
       font-family: inherit;
       font-weight: bold;
       letter-spacing: -0.5px;
-      color: var(--accent);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+    }
+
+    .ransom-box {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      line-height: 1.2;
+      border: 1px solid #000;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .ransom-box:nth-child(1) {
+      background: var(--cutout-bg);
+      color: var(--cutout-text);
+      transform: rotate(-2deg);
+    }
+
+    .ransom-box:nth-child(2) {
+      background: var(--accent);
+      color: #fff;
+      transform: rotate(2deg);
     }
 
     .subtitle {
@@ -145,9 +183,13 @@
       }
       .profile-img-container {
         width: 130px;
+        transform: none;
       }
       .profile-img {
         height: 160px;
+      }
+      h1.ransom-name {
+        justify-content: center;
       }
     }
 
@@ -155,23 +197,30 @@
       margin-bottom: 2.5rem;
     }
 
+    /* Old-school newspaper tag for headers */
     h2 {
-      font-size: 1rem;
+      display: inline-block;
+      font-size: 0.95rem;
       font-weight: bold;
-      border-left: 3px solid var(--accent);
-      padding-left: 0.5rem;
-      margin-bottom: 1.2rem;
-      color: var(--text);
+      font-family: inherit;
       text-transform: lowercase;
+      background: var(--cutout-bg);
+      color: var(--cutout-text);
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border);
+      box-shadow: 3px 3px 0 var(--accent);
+      transform: rotate(-0.5deg);
     }
 
     .about-text {
       font-size: 0.85rem;
-      color: var(--text-dim);
+      color: var(--text);
       line-height: 1.6;
       background: var(--card-bg);
       border: 1px solid var(--border);
       padding: 1.2rem;
+      box-shadow: 3px 3px 0 var(--shadow-color);
     }
 
     .about-text p {
@@ -183,13 +232,17 @@
     }
 
     .highlight {
-      color: var(--accent);
+      background: var(--border);
+      color: var(--text);
+      padding: 0.05rem 0.35rem;
+      border: 1px dashed var(--accent);
       font-weight: bold;
     }
 
     .about-text a {
       color: var(--accent);
       text-decoration: underline;
+      font-weight: bold;
     }
 
     .project-card {
@@ -197,11 +250,14 @@
       border: 1px solid var(--border);
       padding: 1.2rem;
       margin-bottom: 1.2rem;
-      transition: border-color 0.15s ease;
+      box-shadow: 3px 3px 0 var(--shadow-color);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
     }
 
     .project-card:hover {
       border-color: var(--accent);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--accent);
     }
 
     .project-title {
@@ -230,12 +286,13 @@
       padding: 0.2rem 0.5rem;
       background: var(--bg);
       font-weight: bold;
+      box-shadow: 2px 2px 0 var(--shadow-color);
       transition: background 0.15s ease, color 0.15s ease;
     }
 
     .project-links a:hover {
       background: var(--accent);
-      color: #000;
+      color: #fff;
     }
 
     .badges-container {
@@ -250,6 +307,7 @@
       height: 31px;
       image-rendering: pixelated;
       border: 1px solid var(--border);
+      box-shadow: 2px 2px 0 var(--shadow-color);
       display: block;
     }
 
@@ -261,13 +319,14 @@
       padding: 0.38rem 0.6rem;
       background: var(--bg);
       font-weight: bold;
+      box-shadow: 2px 2px 0 var(--shadow-color);
       display: inline-block;
       transition: background 0.15s ease, color 0.15s ease;
     }
 
     .socials a:hover {
       background: var(--accent);
-      color: #000;
+      color: #fff;
     }
   </style>
 </head>
@@ -287,7 +346,7 @@
         <img src="me.jpg" alt="om yewale photo" class="profile-img">
       </div>
       <div class="profile-info">
-        <h1 class="ransom-name">om yewale</h1>
+        <h1 class="ransom-name"><span class="ransom-box">om</span><span class="ransom-box">yewale</span></h1>
         <p class="subtitle">B.Tech IT Student | Full Stack & AI Enthusiast</p>
         <p class="meta">Vidyalankar Institute of Technology</p>
       </div>
@@ -316,7 +375,7 @@
       <div class="project-card">
         <div class="project-title">secondbrain-link-vault</div>
         <p class="project-desc">
-          Minimalistic, high-efficiency link storing and bookmark management system designed for fast retrieval and clean organization.
+        Link storage system written in MERN
         </p>
         <div class="project-links">
           <a href="https://secondbrain-link-vault.vercel.app/" target="_blank">live</a>
@@ -327,7 +386,7 @@
       <div class="project-card">
         <div class="project-title">DocRAG</div>
         <p class="project-desc">
-          Lightweight, high-performance RAG chatbot built with TypeScript, Express, and Groq. Parses raw documents, indexes text locally using a keyword matching strategy, and leverages Groq's low-latency inference engine for contextual answers.
+        Chatbot which answers questions based on your uploaded documents 
         </p>
         <div class="project-links">
           <a href="https://github.com/OMEE-Y/DocRAG" target="_blank">src</a>
